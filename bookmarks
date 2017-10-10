@@ -2,8 +2,15 @@
 #
 # Run a browser onto a bookmark selected with dmenu
 #
-# Example:
+# Example call :
+#
 #     bookmarks google-chrome --app= bookmarks.txt -fn "Terminess Powerline:size=14"
+#
+# Example bookmarks.txt :
+#
+#     https://news.ycombinator.com
+#     https://reddit.com
+#
 
 test "$#" -ne 1 \
 && ( echo "usage: bookmarks <browser> <urlprefix> <bookmarks.txt> <dmenuopts ...>" 1>&2
