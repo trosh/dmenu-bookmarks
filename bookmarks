@@ -1,0 +1,5 @@
+#!/bin/sh
+test "$#" -ne 1 && ( echo "usage: bookmarks <bookmarks.txt>" 1>&2 ; exit 1 )
+bookmark=$(cat "$1" | dmenu -fn "Terminess Powerline:size=14")
+test "$?" -ne 0 && exit
+google-chrome-stable --app="$bookmark" &
