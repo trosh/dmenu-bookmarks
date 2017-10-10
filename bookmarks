@@ -1,5 +1,17 @@
 #!/bin/sh
-test "$#" -ne 1 && ( echo "usage: bookmarks <bookmarks.txt>" 1>&2 ; exit 1 )
-bookmark=$(cat "$1" | dmenu -fn "Terminess Powerline:size=14")
+#
+# Run a browser onto a bookmark selected with dmenu
+#
+# Example:
+#     bookmarks google-chrome --app= bookmarks.txt -fn "Terminess Powerline:size=14"
+
+test "$#" -ne 1 \
+&& ( echo "usage: bookmarks <browser> <urlprefix> <bookmarks.txt> <dmenuopts ...>" 1>&2
+     exit 1 )
+browser="$1"
+urlprefix="$2"
+bookmarkstxt="$3"
+shift 3
+bookmark=$(cat "$bookmarkstxt" | dmenu -p "$bookmarkstxt" "$@")
 test "$?" -ne 0 && exit
-google-chrome-stable --app="$bookmark" &
+"$browser" "$urlprefix""$bookmark" &
