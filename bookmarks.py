@@ -13,10 +13,12 @@ PREFIXES = {
     "d"   : ("+", "https://www.duckduckgo.com/?q="),
     "y"   : ("+", "https://www.youtube.com/results?search_query="),
     "yt"  : ("+", "https://www.youtube.com/results?search_query="),
+    "w"   : ("+", "https://en.wikipedia.org/w/index.php?search="),
     "we"  : ("+", "https://en.wikipedia.org/w/index.php?search="),
     "wf"  : ("+", "https://fr.wikipedia.org/w/index.php?search="),
-    "wpe" : (" ", "https://en.wikipedia.org/wiki/"), # Exact page name
-    "wpf" : (" ", "https://fr.wikipedia.org/wiki/"), # Exact page name
+    "wp"  : (" ", "https://en.wikipedia.org/wiki/"), # Exact page name
+    "wpe" : (" ", "https://en.wikipedia.org/wiki/"),
+    "wpf" : (" ", "https://fr.wikipedia.org/wiki/"),
 }
 
 def build_search(prefix, query, sep):

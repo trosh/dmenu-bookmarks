@@ -23,7 +23,7 @@ One line per URL pattern
 
       python.org
 
-* Search pattern (abbreviation + " " before search query)
+* Search pattern (abbreviation followed by a space before search query)
 
   * DuckDuckGo
 
@@ -45,6 +45,6 @@ One line per URL pattern
 
         wp woodchuck
 
-  * Hidden pattern
+  * Hidden pattern (space prefix)
 
-        ␣d whats a groundhog
+         d whats a groundhog
