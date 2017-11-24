@@ -12,9 +12,39 @@ Integrates well with a minimalist window manager such as i3 :
 
 ## bookmarks.txt
 
-One line per URL
+One line per URL pattern
 
-Keep protocol if browser call requires it (chrome's `--app` for instance)
+* Fully formed URL (including protocol prefix)
 
-    https://news.ycombinator.com
-    https://reddit.com
+      https://news.ycombinator.com
+      https://reddit.com
+
+* Partially formed URL
+
+      python.org
+
+* Search pattern (abbreviation + " " before search query)
+
+  * DuckDuckGo
+
+        d how much wood would a woodchuck chuck
+
+  * Google
+
+        g would a woodchuck even chuck wood
+
+  * YouTube
+
+        y woodchuck chucking wood
+
+  * Wikipedia search
+
+        w woodchuck wood chucking
+
+  * Wikipedia specific page
+
+        wp woodchuck
+
+  * Hidden pattern
+
+        ␣d whats a groundhog
