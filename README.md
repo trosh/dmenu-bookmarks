@@ -48,3 +48,8 @@ One line per URL pattern
   * Hidden pattern (space prefix)
 
          d whats a groundhog
+
+* Delete an entry from the text file by prefixing with a tilde
+  (`<pattern><tab><home>~<cr>`)
+
+      ~https://reddit.com

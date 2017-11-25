@@ -61,7 +61,9 @@ def determine_url(result):
 def main(browser, urlprefix, bookmarkstxt, dmenuopts):
     """
     Get user input from dmenu, build resulting URL,
-    append input to bookmarkstxt if not hidden, run browser
+    append entry to bookmarkstxt if not hidden,
+    delete entry from bookmarkstxt if preceded by a ~,
+    run browser if no deletion happened
     @param  browser       String to execute to run the browser (e.g. "firefox")
     @param  urlprefix     String to place directly before the URL
                           in the browser call (e.g. "--url=")
@@ -75,7 +77,17 @@ def main(browser, urlprefix, bookmarkstxt, dmenuopts):
         result = check_output(["dmenu", "-p", bookmarkstxt]
                               + dmenuopts,
                               stdin=bookmarks
-                             ).decode("utf8").rstrip()
+                             ).decode("utf8")[:-1]
+    # Check if it's a deletion
+    if result.startswith("~"):
+        with open(bookmarkstxt, "r+") as bookmarks:
+            bookmarks_content = bookmarks.readlines()
+            bookmarks.seek(0)
+            for line in bookmarks_content:
+                if line != result[1:] + "\n":
+                    bookmarks.write(line)
+            bookmarks.truncate()
+        return
     # Check if result should be kept hidden (space prefix)
     if result.startswith(" "):
         result = result[1:]
@@ -84,7 +96,7 @@ def main(browser, urlprefix, bookmarkstxt, dmenuopts):
         result_present = False
         with open(bookmarkstxt, "r") as bookmarks:
             for line in bookmarks:
-                if line.rstrip() == result:
+                if line == result + "\n":
                     result_present = True
                     break
         if not result_present:
