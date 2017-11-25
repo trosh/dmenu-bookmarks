@@ -10,6 +10,7 @@ from subprocess import check_output, run
 # and corresponding base search URL
 PREFIXES = {
     "g"   : ("+", "https://www.google.com/search?q="),
+    "gi"  : ("+", "https://www.google.com/search?tbm=isch&q="), # Image search
     "d"   : ("+", "https://www.duckduckgo.com/?q="),
     "y"   : ("+", "https://www.youtube.com/results?search_query="),
     "yt"  : ("+", "https://www.youtube.com/results?search_query="),
