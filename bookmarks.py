@@ -58,7 +58,7 @@ def determine_url(result):
                 url = build_search(prefix, result, sep)
     return url
 
-def main(browser, urlprefix, bookmarkstxt, dmenuopts):
+def main(browser, urlprefix, hiddenarg, bookmarkstxt, dmenuopts):
     """
     Get user input from dmenu, build resulting URL,
     append entry to bookmarkstxt if not hidden,
@@ -67,6 +67,8 @@ def main(browser, urlprefix, bookmarkstxt, dmenuopts):
     @param  browser       String to execute to run the browser (e.g. "firefox")
     @param  urlprefix     String to place directly before the URL
                           in the browser call (e.g. "--url=")
+    @param  hiddenarg     Argument to add to browser call
+                          in case of hidden input (e.g. "--incognito")
     @param  bookmarkstxt  Filename of the file to pipe into dmenu
                           (e.g. "/home/user/.bookmarks.txt")
     @param  dmenuopts     Optional arguments to pass to dmenu
@@ -89,7 +91,8 @@ def main(browser, urlprefix, bookmarkstxt, dmenuopts):
             bookmarks.truncate()
         return
     # Check if result should be kept hidden (space prefix)
-    if result.startswith(" "):
+    hidden = result.startswith(" ")
+    if hidden:
         result = result[1:]
     else:
         # Is result in bookmarkstxt ?
@@ -104,7 +107,10 @@ def main(browser, urlprefix, bookmarkstxt, dmenuopts):
             with open(bookmarkstxt, "a") as bookmarks:
                 bookmarks.write(result + "\n")
     url = determine_url(result)
-    run([browser, urlprefix + url])
+    args = [browser, urlprefix + url]
+    if hidden:
+        args.append(hiddenarg)
+    run(args)
 
 if __name__ == "__main__":
-    main(argv[1], argv[2], argv[3], argv[4:])
+    main(argv[1], argv[2], argv[3], argv[4], argv[5:])
