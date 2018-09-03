@@ -76,7 +76,7 @@ def main(browser, urlprefix, hiddenarg, bookmarkstxt, dmenuopts):
     """
     # Pipe bookmarkstxt to dmenu, get user input as result
     with open(bookmarkstxt, "r") as bookmarks:
-        result = check_output(["dmenu", "-p", bookmarkstxt]
+        result = check_output(["dmenu", "-p", browser]
                               + dmenuopts,
                               stdin=bookmarks
                              ).decode("utf8")[:-1]
