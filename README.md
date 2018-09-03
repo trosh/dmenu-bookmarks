@@ -8,7 +8,7 @@ Run a browser onto a bookmark selected with dmenu
 
 Integrates well with a tabless browser and a modular window manager such as i3 :
 
-    bindsym $mod+shift+b exec bookmarks chrome --app= $HOME/.bookmarks.txt -fn "Terminus:size=14"
+    bindsym $mod+shift+b exec bookmarks chrome --app= --incognito $HOME/.bookmarks.txt -fn "Terminus:size=14"
 
 ## bookmarks.txt
 
