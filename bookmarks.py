@@ -79,7 +79,7 @@ def main(browser, urlprefix, hiddenarg, bookmarkstxt, dmenuopts):
         result = check_output(["dmenu", "-p", browser]
                               + dmenuopts,
                               stdin=bookmarks
-                             ).decode()[:-1]
+                             ).decode().rstrip("\n")
     # Check if it's a deletion
     if result.startswith("~"):
         with open(bookmarkstxt, "r+") as bookmarks:
