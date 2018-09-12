@@ -74,10 +74,18 @@ def main(browser, urlprefix, hiddenarg, bookmarkstxt, dmenuopts):
                           (e.g. "-fn", "Courier")
     """
     # Pipe bookmarkstxt to dmenu, get user input as result
-    with open(bookmarkstxt, "r") as bookmarks:
-        result = check_output(
-            ["dmenu", "-p", browser] + dmenuopts,
-            stdin=bookmarks).decode().rstrip("\n")
+    try:
+        with open(bookmarkstxt, "r") as bookmarks:
+            result = check_output(
+                ["dmenu", "-p", browser] + dmenuopts,
+                stdin=bookmarks).decode().rstrip("\n")
+    except FileNotFoundError:
+        with open(bookmarkstxt, "a") as bookmarks:
+            bookmarks.write("")
+        with open(bookmarkstxt, "r") as bookmarks:
+            result = check_output(
+                ["dmenu", "-p", browser] + dmenuopts,
+                stdin=bookmarks).decode().rstrip("\n")
     # Check if it's a deletion
     if result.startswith("~"):
         with open(bookmarkstxt, "r+") as bookmarks:
