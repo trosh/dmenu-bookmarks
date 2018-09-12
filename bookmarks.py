@@ -44,9 +44,8 @@ def determine_url(result):
         # Is `result` a search pattern ?
         for accro, prefix in PREFIXES.items():
             if result.startswith(accro + " "):
-                url = build_search(prefix[1],
-                                   result[len(accro)+1:],
-                                   prefix[0])
+                url = build_search(
+                    prefix[1], result[len(accro)+1:], prefix[0])
                 break
         else:
             # Is `result` a partially formed URL  ?
@@ -76,10 +75,9 @@ def main(browser, urlprefix, hiddenarg, bookmarkstxt, dmenuopts):
     """
     # Pipe bookmarkstxt to dmenu, get user input as result
     with open(bookmarkstxt, "r") as bookmarks:
-        result = check_output(["dmenu", "-p", browser]
-                              + dmenuopts,
-                              stdin=bookmarks
-                             ).decode().rstrip("\n")
+        result = check_output(
+            ["dmenu", "-p", browser] + dmenuopts,
+            stdin=bookmarks).decode().rstrip("\n")
     # Check if it's a deletion
     if result.startswith("~"):
         with open(bookmarkstxt, "r+") as bookmarks:
