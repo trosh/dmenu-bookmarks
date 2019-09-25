@@ -20,6 +20,7 @@ PREFIXES = {
     "wp"  : (" ", "https://en.wikipedia.org/wiki/"), # Exact page name
     "wpe" : (" ", "https://en.wikipedia.org/wiki/"),
     "wpf" : (" ", "https://fr.wikipedia.org/wiki/"),
+    "aw"  : ("+", "https://wiki.archlinux.org/index.php?search="),
 }
 
 def build_search(prefix, query, sep):
